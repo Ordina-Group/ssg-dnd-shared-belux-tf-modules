@@ -15,4 +15,34 @@ entries:
     urls:
     - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/argocd-0.1.0/argocd-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-03T07:07:45.719457126Z"
+  ebs-storageclass:
+  - apiVersion: v1
+    created: "2025-10-03T07:12:25.759730062Z"
+    digest: 2180eed0dc299a0c16250483085ec7d379f74062c463d38bfa3e9affc4370997
+    name: ebs-storageclass
+    urls:
+    - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/ebs-storageclass-1.0.1/ebs-storageclass-1.0.1.tgz
+    version: 1.0.1
+  gwlb:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-10-03T07:12:25.897004627Z"
+    description: AWS gwlb GENEVE tunnel handler
+    digest: 73798e1fa8d99ff02a75e28f4adfb62a95c70c1722b670a928d2d6598e947ebc
+    name: gwlb
+    type: application
+    urls:
+    - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/gwlb-1.0.1/gwlb-1.0.1.tgz
+    version: 1.0.1
+  targetgroupbinding:
+  - apiVersion: v2
+    appVersion: 3.1.1
+    created: "2025-10-03T07:12:26.012303001Z"
+    description: A Helm chart for Kubernetes
+    digest: e2a1b2314a5eb005ba8d0fe81cf0a35196a1f57dfe5a559eda82a0215568c1a6
+    name: targetgroupbinding
+    type: application
+    urls:
+    - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/targetgroupbinding-0.1.4/targetgroupbinding-0.1.4.tgz
+    version: 0.1.4
+generated: "2025-10-03T07:12:26.012308611Z"
