@@ -1,0 +1,64 @@
+output "access_point_arns" {
+  value       = module.efs.access_point_arns
+  description = "EFS AP ARNs"
+}
+
+output "access_point_ids" {
+  value       = module.efs.access_point_ids
+  description = "EFS AP ids"
+}
+
+output "arn" {
+  value       = module.efs.arn
+  description = "EFS ARN"
+}
+
+output "id" {
+  value       = module.efs.id
+  description = "EFS ID"
+}
+
+output "host" {
+  value       = module.efs.host
+  description = "Route53 DNS hostname for the EFS"
+}
+
+output "dns_name" {
+  value       = module.efs.dns_name
+  description = "EFS DNS name"
+}
+
+output "mount_target_dns_names" {
+  value       = module.efs.mount_target_dns_names
+  description = "List of EFS mount target DNS names"
+}
+
+output "mount_target_ids" {
+  value       = module.efs.mount_target_ids
+  description = "List of EFS mount target IDs (one per Availability Zone)"
+}
+
+output "mount_target_ips" {
+  value       = module.efs.mount_target_ips
+  description = "List of EFS mount target IPs (one per Availability Zone)"
+}
+
+output "network_interface_ids" {
+  value       = module.efs.network_interface_ids
+  description = "List of mount target network interface IDs"
+}
+
+output "security_group_id" {
+  value       = module.efs.security_group_id
+  description = "EFS Security Group ID"
+}
+
+output "security_group_arn" {
+  value       = module.efs.security_group_arn
+  description = "EFS Security Group ARN"
+}
+
+output "security_group_name" {
+  value       = module.efs.security_group_name
+  description = "EFS Security Group name"
+}
