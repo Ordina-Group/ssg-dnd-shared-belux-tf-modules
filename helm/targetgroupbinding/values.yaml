@@ -1,4 +1,0 @@
-name: "nginx"
-serviceName: "nginx-controller"
-targetGroupArn: ""
-port: 80
