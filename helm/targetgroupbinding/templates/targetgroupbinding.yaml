@@ -1,0 +1,9 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: {{ .Values.name }}
+spec:
+  serviceRef:
+    name: {{ .Values.serviceName }}
+    port: {{ .Values.port }}
+  targetGroupARN: {{ .Values.targetGroupArn | quote }}
