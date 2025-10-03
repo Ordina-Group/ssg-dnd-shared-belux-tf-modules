@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  argocd:
+  - apiVersion: v2
+    appVersion: 3.1.1
+    created: "2025-10-03T07:07:45.719450373Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 8.3.1
+    description: A Helm chart for Kubernetes
+    digest: a51af7eeb42711f1c630db55cd5762cf31da8edfe0fcc8fd6a7f92f24ff7f776
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/argocd-0.1.0/argocd-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-10-03T07:07:45.719457126Z"
