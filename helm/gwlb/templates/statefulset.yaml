@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "gwlb.fullname" . }}
+  labels:
+    {{- include "gwlb.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "gwlb.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "gwlb.serviceAccountName" . }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "gwlb.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "gwlb.serviceAccountName" . }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: eks.amazonaws.com/compute-type
+                operator: NotIn
+                values:
+                - hybrid
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - {{ include "gwlb.name" . }}
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      initContainers:
+      - image: public.ecr.aws/aws-cli/aws-cli:2.24.7
+        name: awscli-init
+        command: [ "/scripts/register-target.sh"]
+        env:
+          - name: TARGET_ARN
+            value: {{ .Values.targetGroupArn }}
+          - name: MY_NODE_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+        volumeMounts:
+        - mountPath: /scripts
+          name: aws-gwlb-tunnel-helper-scripts
+        resources: {}
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        command: ["/gwlbtun"]
+        args: ["-p", "6082", "-c", "/scripts/tunnel-helper.sh"]
+        name: {{ .Chart.Name }}
+        resources: {}
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        env:
+        - name: "POD_CIDR"
+          value: {{ .Values.podsCidr }}
+        - name: "NODE_CIDR"
+          value: {{ .Values.nodesCidr }}
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        ports:
+        - containerPort: 6082
+          hostPort: 6082
+          protocol: TCP
+        - containerPort: 6081
+          hostPort: 6081
+          protocol: UDP
+        volumeMounts:
+        - mountPath: /dev/net/tun
+          name: dev-tun
+        - mountPath: /scripts
+          name: aws-gwlb-tunnel-helper-scripts
+      volumes:
+      - name: aws-gwlb-tunnel-helper-scripts
+        configMap:
+          name: {{ include "gwlb.fullname" . }}-helper-scripts
+          defaultMode: 0744
+      - hostPath:
+          path: /dev/net/tun
+          type: CharDevice
+        name: dev-tun

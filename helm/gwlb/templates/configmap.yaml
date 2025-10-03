@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "gwlb.fullname" . }}-helper-scripts
+data:
+  tunnel-helper.sh: |
+    #!/bin/bash
+    echo "$1 $2 $3"
+    /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    echo 0 > /proc/sys/net/ipv4/conf/$2/rp_filter
+    echo 0 > /proc/sys/net/ipv4/conf/$3/rp_filter
+    ip rule add from $MY_POD_IP table main prio 1000
+    ip rule add from $POD_CIDR table 100 prio 1110
+    ip route add $NODE_CIDR dev $3 table 100
+  register-target.sh: |
+    #!/bin/bash
+    aws elbv2 register-targets --target-group-arn $TARGET_ARN --targets Id=$MY_NODE_IP

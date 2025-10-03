@@ -1,0 +1,3 @@
+name: gp3
+type: gp3
+availabilityZones: ["eu-cental-1a","eu-central-1b","eu-central-1c"]
