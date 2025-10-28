@@ -42,6 +42,7 @@ module "efs" {
 resource "helm_release" "efs_storage_class" {
   name       = "efs-storageclass-${module.this.context.tenant}"
   repository = "${path.module}/helm"
+  namespace  = "kube-system"
   chart      = "storageclass"
   atomic     = true
   set = [
