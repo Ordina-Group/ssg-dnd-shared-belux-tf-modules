@@ -15,6 +15,17 @@ entries:
     urls:
     - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/argocd-0.1.0/argocd-0.1.0.tgz
     version: 0.1.0
+  argocd-application:
+  - apiVersion: v2
+    appVersion: 3.1.1
+    created: "2025-10-28T18:15:28.260475595Z"
+    description: A Helm chart for Kubernetes
+    digest: 7c23cdf32f6eeba1f1b7c32932c7af16f212274c88ba88a9c1d484a5d2fd71bb
+    name: argocd-application
+    type: application
+    urls:
+    - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/argocd-application-0.1.0/argocd-application-0.1.0.tgz
+    version: 0.1.0
   ebs-storageclass:
   - apiVersion: v1
     created: "2025-10-03T07:12:25.759730062Z"
@@ -45,4 +56,4 @@ entries:
     urls:
     - https://github.com/Ordina-Group/ssg-dnd-shared-belux-tf-modules/releases/download/targetgroupbinding-0.1.4/targetgroupbinding-0.1.4.tgz
     version: 0.1.4
-generated: "2025-10-03T07:12:26.012308611Z"
+generated: "2025-10-28T18:15:28.260481077Z"
