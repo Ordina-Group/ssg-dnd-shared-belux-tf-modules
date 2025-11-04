@@ -1,9 +1,11 @@
 variable "admin_url" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "base_url" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "client_id" {
@@ -16,7 +18,8 @@ variable "direct_access_grant_enabled" {
 }
 
 variable "name" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "realm_id" {
@@ -39,10 +42,10 @@ variable "standard_flow_enabled" {
 
 variable "valid_redirect_uris" {
   type    = list(string)
-  default = []
+  default = null
 }
 
 variable "web_origins" {
   type    = list(string)
-  default = []
+  default = null
 }

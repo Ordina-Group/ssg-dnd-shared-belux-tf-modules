@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "client" {
   access_token_lifespan                      = null
   access_type                                = "CONFIDENTIAL"
-  admin_url                                  = var.admin_url
+  admin_url                                  = var.admin_url ? var.admin_url : var.rool_url
   backchannel_logout_revoke_offline_sessions = false
   backchannel_logout_session_required        = false
   backchannel_logout_url                     = null
@@ -25,13 +25,12 @@ resource "keycloak_openid_client" "client" {
   implicit_flow_enabled                      = false
   import                                     = false
   login_theme                                = null
-  name                                       = var.name
+  name                                       = var.name ? var.name : var.client_id
   oauth2_device_authorization_grant_enabled  = false
   oauth2_device_code_lifespan                = null
   oauth2_device_polling_interval             = null
   realm_id                                   = var.realm_id
   root_url                                   = var.root_url
-  service_account_user_id                    = var.service_account_user_id
   service_accounts_enabled                   = var.service_accounts_enabled
   standard_flow_enabled                      = var.standard_flow_enabled
   use_refresh_tokens                         = false
@@ -39,6 +38,6 @@ resource "keycloak_openid_client" "client" {
   valid_post_logout_redirect_uris = [
     "+",
   ]
-  valid_redirect_uris = var.valid_redirect_uris
-  web_origins         = var.web_origins
+  valid_redirect_uris = var.valid_redirect_uris ? var.valid_redirect_uris : ["${var.root_url}/*"]
+  web_origins         = var.web_origins ? var.web_origins : [var.root_url]
 }
