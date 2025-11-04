@@ -30,6 +30,11 @@ variable "root_url" {
   type = string
 }
 
+variable "access_type" {
+  type    = string
+  default = "CONFIDENTIAL"
+}
+
 variable "service_accounts_enabled" {
   type    = bool
   default = false

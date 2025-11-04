@@ -1,6 +1,6 @@
 resource "keycloak_openid_client" "client" {
   access_token_lifespan                      = null
-  access_type                                = "CONFIDENTIAL"
+  access_type                                = var.access_type
   admin_url                                  = var.admin_url ? var.admin_url : var.rool_url
   backchannel_logout_revoke_offline_sessions = false
   backchannel_logout_session_required        = false
