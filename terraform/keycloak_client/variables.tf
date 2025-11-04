@@ -13,8 +13,9 @@ variable "client_id" {
 }
 
 variable "direct_access_grants_enabled" {
-  type    = bool
-  default = true
+  type     = bool
+  default  = true
+  nullable = false
 }
 
 variable "name" {
@@ -32,18 +33,21 @@ variable "root_url" {
 }
 
 variable "access_type" {
-  type    = string
-  default = "CONFIDENTIAL"
+  type     = string
+  default  = "CONFIDENTIAL"
+  nullable = false
 }
 
 variable "service_accounts_enabled" {
-  type    = bool
-  default = false
+  type     = bool
+  default  = false
+  nullable = false
 }
 
 variable "standard_flow_enabled" {
-  type    = bool
-  default = true
+  type     = bool
+  default  = true
+  nullable = false
 }
 
 variable "valid_redirect_uris" {
