@@ -54,3 +54,8 @@ variable "web_origins" {
   type    = list(string)
   default = null
 }
+
+variable "access_token_lifespan" {
+  type    = string
+  default = null
+}
