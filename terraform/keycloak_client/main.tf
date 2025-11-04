@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "client" {
   access_token_lifespan                      = var.access_token_lifespan
   access_type                                = var.access_type
-  admin_url                                  = var.admin_url ? var.admin_url : var.root_url
+  admin_url                                  = var.admin_url != null ? var.admin_url : var.root_url
   backchannel_logout_revoke_offline_sessions = false
   backchannel_logout_session_required        = false
   backchannel_logout_url                     = null
@@ -25,7 +25,7 @@ resource "keycloak_openid_client" "client" {
   implicit_flow_enabled                      = false
   import                                     = false
   login_theme                                = null
-  name                                       = var.name ? var.name : var.client_id
+  name                                       = var.name != null ? var.name : var.client_id
   oauth2_device_authorization_grant_enabled  = false
   oauth2_device_code_lifespan                = null
   oauth2_device_polling_interval             = null
@@ -38,6 +38,6 @@ resource "keycloak_openid_client" "client" {
   valid_post_logout_redirect_uris = [
     "+",
   ]
-  valid_redirect_uris = var.valid_redirect_uris ? var.valid_redirect_uris : ["${trimsuffix(var.root_url, "/")}/*"]
-  web_origins         = var.web_origins ? var.web_origins : [trimsuffix(var.root_url, "/")]
+  valid_redirect_uris = var.valid_redirect_uris != null ? var.valid_redirect_uris : ["${trimsuffix(var.root_url, "/")}/*"]
+  web_origins         = var.web_origins != null ? var.web_origins : [trimsuffix(var.root_url, "/")]
 }
