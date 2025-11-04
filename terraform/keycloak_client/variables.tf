@@ -12,7 +12,7 @@ variable "client_id" {
   type = string
 }
 
-variable "direct_access_grant_enabled" {
+variable "direct_access_grants_enabled" {
   type    = bool
   default = true
 }
