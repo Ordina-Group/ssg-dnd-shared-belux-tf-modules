@@ -27,7 +27,8 @@ variable "realm_id" {
 }
 
 variable "root_url" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "access_type" {
