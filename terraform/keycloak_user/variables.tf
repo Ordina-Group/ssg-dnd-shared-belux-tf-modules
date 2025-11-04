@@ -18,10 +18,6 @@ variable "username" {
   type = string
 }
 
-variable "realm_id" {
-  type = string
-}
-
 variable "group_ids" {
   type = list(string)
 }
