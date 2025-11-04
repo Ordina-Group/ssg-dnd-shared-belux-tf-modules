@@ -27,11 +27,6 @@ variable "root_url" {
   type = string
 }
 
-variable "service_account_user_id" {
-  type    = string
-  default = null
-}
-
 variable "service_accounts_enabled" {
   type    = bool
   default = false
