@@ -39,5 +39,5 @@ resource "keycloak_openid_client" "client" {
     "+",
   ]
   valid_redirect_uris = var.valid_redirect_uris ? var.valid_redirect_uris : ["${var.root_url}/*"]
-  web_origins         = var.web_origins ? var.web_origins : [var.root_url]
+  web_origins         = var.web_origins ? var.web_origins : [trimsuffix(var.root_url, "/")]
 }
