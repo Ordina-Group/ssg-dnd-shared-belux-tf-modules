@@ -39,6 +39,14 @@ resource "keycloak_openid_client" "client" {
   valid_post_logout_redirect_uris = [
     "+",
   ]
+  dynamic "authorization" {
+    for_each = var.authorization != null ? [var.authorization] : []
+    content {
+      policy_enforcement_mode          = authorization.value.policy_enforcement_mode
+      decision_strategy                = authorization.value.decision_strategy
+      allow_remote_resource_management = authorization.value.allow_remote_resource_management
+    }
+  }
   valid_redirect_uris = var.valid_redirect_uris != null ? var.valid_redirect_uris : ["${trimsuffix(var.root_url, "/")}/*"]
   web_origins         = var.web_origins != null ? var.web_origins : [trimsuffix(var.root_url, "/")]
 }

@@ -79,3 +79,12 @@ variable "optional_scopes" {
   type    = list(string)
   default = null
 }
+
+variable "authorization" {
+  type = object({
+    policy_enforcement_mode          = string
+    decision_strategy                = string
+    allow_remote_resource_management = bool
+  })
+  default = null
+}
