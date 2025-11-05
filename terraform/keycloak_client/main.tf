@@ -42,3 +42,19 @@ resource "keycloak_openid_client" "client" {
   valid_redirect_uris = var.valid_redirect_uris != null ? var.valid_redirect_uris : ["${trimsuffix(var.root_url, "/")}/*"]
   web_origins         = var.web_origins != null ? var.web_origins : [trimsuffix(var.root_url, "/")]
 }
+
+resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
+  count     = var.default_scopes != null ? 1 : 0
+  realm_id  = var.realm_id
+  client_id = keycloak_openid_client.client.id
+
+  default_scopes = var.default_scopes
+}
+
+resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
+  count     = var.optional_scopes != null ? 1 : 0
+  realm_id  = var.realm_id
+  client_id = keycloak_openid_client.client.id
+
+  optional_scopes = var.optional_scopes
+}

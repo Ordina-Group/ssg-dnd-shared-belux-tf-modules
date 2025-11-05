@@ -69,3 +69,13 @@ variable "client_secret" {
   type    = string
   default = null
 }
+
+variable "default_scopes" {
+  type    = list(string)
+  default = null
+}
+
+variable "optional_scopes" {
+  type    = list(string)
+  default = null
+}
