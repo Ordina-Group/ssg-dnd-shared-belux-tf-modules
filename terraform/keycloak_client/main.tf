@@ -48,7 +48,7 @@ resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
   realm_id  = var.realm_id
   client_id = keycloak_openid_client.client.id
 
-  default_scopes = concat(var.default_scopes, (keycloak_openid_client.client.service_accounts_enabled ? "service_account" : []))
+  default_scopes = concat(var.default_scopes, (keycloak_openid_client.client.service_accounts_enabled ? ["service_account"] : []))
 }
 
 resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
