@@ -8,6 +8,14 @@ resource "keycloak_user" "user" {
   realm_id         = var.realm_id
   required_actions = []
   username         = var.username
+
+  dynamic "initial_password" {
+    for_each = var.initial_password != null ? [var.initial_password] : []
+    content {
+      value     = initial_password.value
+      temporary = true
+    }
+  }
 }
 
 resource "keycloak_user_groups" "groups" {
