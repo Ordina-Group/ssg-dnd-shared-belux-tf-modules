@@ -12,6 +12,7 @@ resource "keycloak_openid_client" "client" {
   client_offline_session_max_lifespan        = null
   client_session_idle_timeout                = null
   client_session_max_lifespan                = null
+  client_secret                              = var.client_secret
   consent_required                           = false
   consent_screen_text                        = null
   description                                = null

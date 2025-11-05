@@ -64,3 +64,8 @@ variable "access_token_lifespan" {
   type    = string
   default = null
 }
+
+variable "client_secret" {
+  type    = string
+  default = null
+}
