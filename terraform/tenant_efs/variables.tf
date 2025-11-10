@@ -22,3 +22,13 @@ variable "eks_cluster_id" {
   description = "EKS cluster ID"
   type        = string
 }
+
+variable "uid" {
+  type    = string
+  default = null
+}
+
+variable "gid" {
+  type    = string
+  default = null
+}

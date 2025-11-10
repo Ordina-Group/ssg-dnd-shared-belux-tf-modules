@@ -12,4 +12,10 @@ parameters:
   provisioningMode: "efs-ap"
   fileSystemId: {{ .Values.efsId }}
   directoryPerms: "700"
+  {{- with .Values.uid }}
+  uid: {{ . }}
+  {{- end }}
+  {{- with .Values.gid }}
+  gid: {{ . }}
+  {{- end }}
 allow_volume_expansion: true

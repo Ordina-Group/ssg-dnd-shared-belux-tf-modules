@@ -1,5 +1,7 @@
 locals {
   enabled = module.this.enabled
+  uid     = var.uid ? [{ name = "uid", value = var.uid }] : []
+  gid     = var.gid ? [{ name = "gid", value = var.gid }] : []
 }
 
 module "efs" {
@@ -45,7 +47,7 @@ resource "helm_release" "efs_storage_class" {
   namespace  = "kube-system"
   chart      = "storageclass"
   atomic     = true
-  set = [
+  set = concat([
     {
       name  = "tenant"
       value = module.this.context.tenant
@@ -54,5 +56,6 @@ resource "helm_release" "efs_storage_class" {
       name  = "efsId"
       value = module.efs.id
     }
-  ]
+    ], uid, gid
+  )
 }
