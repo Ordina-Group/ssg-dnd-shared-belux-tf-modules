@@ -13,9 +13,9 @@ parameters:
   fileSystemId: {{ .Values.efsId }}
   directoryPerms: "700"
   {{- with .Values.uid }}
-  uid: {{ . }}
+  uid: {{ quote . }}
   {{- end }}
   {{- with .Values.gid }}
-  gid: {{ . }}
+  gid: {{ quote . }}
   {{- end }}
 allow_volume_expansion: true
