@@ -1,7 +1,7 @@
 locals {
   enabled = module.this.enabled
-  uid     = var.uid ? [{ name = "uid", value = var.uid }] : []
-  gid     = var.gid ? [{ name = "gid", value = var.gid }] : []
+  uid     = var.uid != null ? [{ name = "uid", value = var.uid }] : []
+  gid     = var.gid != null ? [{ name = "gid", value = var.gid }] : []
 }
 
 module "efs" {
