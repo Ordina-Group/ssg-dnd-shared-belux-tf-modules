@@ -56,6 +56,6 @@ resource "helm_release" "efs_storage_class" {
       name  = "efsId"
       value = module.efs.id
     }
-    ], uid, gid
+    ], local.uid, local.gid
   )
 }
