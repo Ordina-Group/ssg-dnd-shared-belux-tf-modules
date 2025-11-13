@@ -1,3 +1,9 @@
+provider "mysql" {
+  endpoint = "${var.endpoint}:3306"
+  username = var.admin_user
+  password = var.admin_password
+}
+
 resource "random_password" "db_password" {
   length           = 32
   special          = true
@@ -8,8 +14,8 @@ module "db_password_secret" {
   source = "terraform-aws-modules/secrets-manager/aws"
 
   # Secret
-  name                    = "${module.this.id}-${local.db_namespace}"
-  description             = "${local.db_namespace} ${module.this.tenant} password"
+  name                    = "${module.this.id}-mysql-user-password"
+  description             = "${module.this.id} mysql password"
   recovery_window_in_days = 30
 
   # Policy
@@ -37,21 +43,18 @@ module "db_password_secret" {
 
 
 resource "mysql_database" "database" {
-  provider              = var.provider_name
-  name                  = module.this.tenant
+  name                  = module.this.name
   default_character_set = var.character_set
   default_collation     = var.collation
 }
 
 resource "mysql_user" "user" {
-  provider           = var.provider_name
-  user               = module.this.tenant
+  user               = module.this.name
   host               = "%"
   plaintext_password = random_password.db_password.result
 }
 
 resource "mysql_grant" "ownership" {
-  provider = var.provider_name
   user     = mysql_user.user.user
   host     = mysql_user.user.host
   database = mysql_database.database.name
