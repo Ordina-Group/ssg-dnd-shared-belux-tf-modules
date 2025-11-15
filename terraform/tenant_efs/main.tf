@@ -7,7 +7,7 @@ locals {
 module "efs" {
   source = "cloudposse/efs/aws"
   # Cloud Posse recommends pinning every module to a specific version
-  version = "1.2.0"
+  version = "1.3.0"
 
   context = module.this.context
 
@@ -23,6 +23,7 @@ module "efs" {
   transition_to_ia = ["AFTER_30_DAYS"]
   #transition_to_primary_storage_class =
   # temporary rule for datasync
+  preserve_security_group_id = true
   additional_security_group_rules = [
     {
       key         = "https"
