@@ -31,6 +31,7 @@ module "efs" {
       to_port     = 443
       protocol    = "tcp"
       cidr_blocks = ["10.0.0.0/8"]
+      self        = false
       description = "datasynchttps"
     },
     {
