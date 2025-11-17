@@ -8,8 +8,8 @@ module "db_password_secret" {
   source = "terraform-aws-modules/secrets-manager/aws"
 
   # Secret
-  name                    = "${module.this.id}-mysql-user-password"
-  description             = "${module.this.id} mysql password"
+  name                    = replace("${module.this.id}-mysql-user-password", "_", "-")
+  description             = replace("${module.this.id} mysql password", "_", "-")
   recovery_window_in_days = 30
 
   # Policy
