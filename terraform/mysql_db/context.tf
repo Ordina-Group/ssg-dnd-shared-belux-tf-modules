@@ -200,7 +200,7 @@ variable "label_order" {
 
 variable "regex_replace_chars" {
   type        = string
-  default     = null
+  default     = "/[^a-zA-Z0-9-_]/"
   description = <<-EOT
     Terraform regular expression (regex) string.
     Characters matching the regex will be removed from the ID elements.
