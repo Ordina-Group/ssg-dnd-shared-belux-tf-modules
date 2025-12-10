@@ -4,7 +4,11 @@ terraform {
   required_providers {
     mysql = {
       source  = "petoju/mysql"
-      version = ">= 3.0.0"
+      version = "3.0.86"
+    }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.25.0"
     }
   }
 }

@@ -5,9 +5,8 @@ locals {
 }
 
 module "efs" {
-  source = "cloudposse/efs/aws"
-  # Cloud Posse recommends pinning every module to a specific version
-  version = "1.3.0"
+  source  = "cloudposse/efs/aws"
+  version = "1.4.0"
 
   context = module.this.context
 
@@ -24,28 +23,28 @@ module "efs" {
   #transition_to_primary_storage_class =
   # temporary rule for datasync
   preserve_security_group_id = true
-  additional_security_group_rules = [
-    {
-      key         = "https"
-      type        = "ingress"
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      cidr_blocks = ["10.0.0.0/8"]
-      self        = false
-      description = "datasynchttps"
-    },
-    {
-      key         = "nfs"
-      type        = "ingress"
-      from_port   = 2049
-      to_port     = 2049
-      protocol    = "tcp"
-      cidr_blocks = []
-      self        = true
-      description = "datasync"
-    }
-  ]
+  # additional_security_group_rules = [
+  #   {
+  #     key         = "https"
+  #     type        = "ingress"
+  #     from_port   = 443
+  #     to_port     = 443
+  #     protocol    = "tcp"
+  #     cidr_blocks = ["10.0.0.0/8"]
+  #     self        = false
+  #     description = "datasynchttps"
+  #   },
+  #   {
+  #     key         = "nfs"
+  #     type        = "ingress"
+  #     from_port   = 2049
+  #     to_port     = 2049
+  #     protocol    = "tcp"
+  #     cidr_blocks = []
+  #     self        = true
+  #     description = "datasync"
+  #   }
+  # ]
 }
 
 # resource "kubernetes_storage_class" "efs_storage_class" {
