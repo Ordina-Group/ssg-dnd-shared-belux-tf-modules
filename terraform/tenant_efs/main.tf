@@ -98,16 +98,19 @@ resource "helm_release" "efs_storage_class_root" {
       name  = "efsId"
       value = module.efs.id
     },
-    { name  = "suffix"
+    {
+      name  = "suffix"
       value = "-root"
     },
     {
       name  = "uid"
       value = "0"
+      type  = "string"
     },
     {
       name  = "gid"
       value = "0"
+      type  = "string"
     },
     {
       name  = "bindingMode"
