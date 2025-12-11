@@ -109,5 +109,9 @@ resource "helm_release" "efs_storage_class_root" {
       name  = "gid"
       value = "0"
     },
+    {
+      name  = "bindigMode"
+      value = "Immediate"
+    }
   ]
 }
