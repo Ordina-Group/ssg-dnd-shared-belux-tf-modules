@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: efs-{{ .Values.tenant }}
+  name: efs-{{ .Values.tenant }}{{ .Values.suffix }}
   annotations:
     Tenant: {{ .Values.tenant }}
 
