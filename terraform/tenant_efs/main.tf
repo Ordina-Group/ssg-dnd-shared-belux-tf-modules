@@ -82,3 +82,32 @@ resource "helm_release" "efs_storage_class" {
     ], local.uid, local.gid
   )
 }
+
+resource "helm_release" "efs_storage_class_root" {
+  name       = "efs-storageclass-${module.this.context.tenant}-root"
+  repository = "${path.module}/helm"
+  namespace  = "kube-system"
+  chart      = "storageclass"
+  atomic     = true
+  set = [
+    {
+      name  = "tenant"
+      value = module.this.context.tenant
+    },
+    {
+      name  = "efsId"
+      value = module.efs.id
+    },
+    { name  = "suffix"
+      value = "-root"
+    },
+    {
+      name  = "uid"
+      value = "0"
+    },
+    {
+      name  = "gid"
+      value = "0"
+    },
+  ]
+}
