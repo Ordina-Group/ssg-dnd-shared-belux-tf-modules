@@ -1,4 +1,5 @@
 efsId: "placeholder"
 tenant: "shared"
+bindingMode: "WaitForFirstConsumer"
 #uid:
 #gid:
