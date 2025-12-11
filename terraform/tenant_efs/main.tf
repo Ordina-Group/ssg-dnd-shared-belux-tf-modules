@@ -110,7 +110,7 @@ resource "helm_release" "efs_storage_class_root" {
       value = "0"
     },
     {
-      name  = "bindigMode"
+      name  = "bindingMode"
       value = "Immediate"
     }
   ]
