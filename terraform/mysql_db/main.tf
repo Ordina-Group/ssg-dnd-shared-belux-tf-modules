@@ -39,7 +39,7 @@ module "db_password_secret" {
   # }
 
   # Version
-  secret_string = var.pass_version != null ? random_password.db_password_versioned.result : random_password.db_password.result
+  secret_string = var.pass_version != null ? random_password.db_password_versioned[0].result : random_password.db_password.result
 
   tags = {
     Resource = "Database"
@@ -56,7 +56,7 @@ resource "mysql_database" "database" {
 resource "mysql_user" "user" {
   user               = module.this.name
   host               = "%"
-  plaintext_password = var.pass_version != null ? random_password.db_password_versioned.result : random_password.db_password.result
+  plaintext_password = var.pass_version != null ? random_password.db_password_versioned[0].result : random_password.db_password.result
 }
 
 resource "mysql_grant" "ownership" {
