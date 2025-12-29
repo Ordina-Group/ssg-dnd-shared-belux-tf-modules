@@ -32,3 +32,8 @@ variable "gid" {
   type    = string
   default = null
 }
+
+variable "root_class_enabled" {
+  type    = bool
+  default = false
+}

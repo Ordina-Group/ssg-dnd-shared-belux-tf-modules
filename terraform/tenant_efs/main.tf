@@ -83,7 +83,13 @@ resource "helm_release" "efs_storage_class" {
   )
 }
 
+moved {
+  from = helm_release.efs_storage_class_root
+  to   = helm_release.efs_storage_class_root[0]
+}
+
 resource "helm_release" "efs_storage_class_root" {
+  count      = var.root_class_enabled ? 1 : 0
   name       = "efs-storageclass-${module.this.context.tenant}-root"
   repository = "${path.module}/helm"
   namespace  = "kube-system"
