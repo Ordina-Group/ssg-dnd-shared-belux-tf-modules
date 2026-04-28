@@ -2,7 +2,7 @@ resource "keycloak_realm" "realm" {
   access_code_lifespan                     = "1m0s"
   access_code_lifespan_login               = "1h0m0s"
   access_code_lifespan_user_action         = "5m0s"
-  access_token_lifespan                    = "5m0s"
+  access_token_lifespan                    = "1h0m0s"
   access_token_lifespan_for_implicit_flow  = "15m0s"
   account_theme                            = null
   action_token_generated_by_admin_lifespan = "12h0m0s"
