@@ -16,7 +16,7 @@ resource "random_password" "db_password_versioned" {
 
 module "db_password_secret" {
   source  = "terraform-aws-modules/secrets-manager/aws"
-  version = "2.0.1"
+  version = "2.2.0"
 
   # Secret
   name                    = replace("${module.this.id}-mysql-user-password", "_", "-")
